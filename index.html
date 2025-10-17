@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        select, #total-sales { margin: 10px 0; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h2>Sales Dashboard</h2>
+    
+    <label for="region-filter">Filter by Region:</label>
+    <select id="region-filter">
+        <option value="all">All Regions</option>
+        <option value="north">North</option>
+        <option value="south">South</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+    </select>
+    
+    <div id="total-sales" data-region="all">$0</div>
+    
+    <script>
+        // Sample sales data
+        const salesData = {
+            north: 12500,
+            south: 8900,
+            east: 15600,
+            west: 7300,
+            all: 44300
+        };
+
+        const regionFilter = document.querySelector('#region-filter');
+        const totalSales = document.querySelector('#total-sales');
+
+        regionFilter.addEventListener('change', function() {
+            const selectedRegion = this.value;
+            const sum = salesData[selectedRegion];
+            
+            totalSales.textContent = `$${sum}`;
+            totalSales.dataset.region = selectedRegion;
+        });
+    </script>
+</body>
+</html>
